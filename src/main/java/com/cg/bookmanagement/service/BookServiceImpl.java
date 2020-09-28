@@ -42,10 +42,7 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public BookDTO addBook(BookDTO books)  {
-		if(bookRepository.existsById(books.getBookId()))
-		{
-			throw new BookAlreadyExistException("Book with id "+books.getBookId()+" Already exist.");
-		}
+		
 		return bookRepository.save(books);
 
 	}
@@ -62,12 +59,16 @@ public class BookServiceImpl implements BookService {
 
 	}
 
-	@Override
-	public boolean updateBook(BookDTO bookItem) {
-		bookRepository.updateInBook(bookItem.getBookId(),bookItem.getTitle(),bookItem.getPrice());
-		return true;
-	}
+	
 
+	@Override
+	public boolean updateBookById(BookDTO bookItem) {
+		if(bookRepository.findById(bookItem.getBookId()).isPresent()) {
+			bookRepository.save(bookItem);
+			return true;
+		}
+		return false;
+	}
 
 
 }

@@ -77,17 +77,18 @@ public class BookController {
 					+ "This api can only be accesed by the Admin of the "
 					+ "BookStore Management System ",
 					response= String.class)
-	@PostMapping("/updateBook")
-	public String updateBook(@Valid @RequestBody BookDTO bookItem){ 
-			 if(bookservice.updateBook(bookItem)) 
-			  { 
-				  return "successfully changed"; 
-			  }
-			  else { 
-				  logger.error("Null request,  Id not provided for  /updateBook");
-			  throw new
-			  NullParameterException("Null request, please provide inputs to update the books details!"); 
-			  }
+	@PostMapping("/updateBookById/{id}")
+	public String updateBookById(@RequestBody BookDTO bookItems)  {
+		if(bookservice.updateBookById(bookItems))
+		{
+			return "successfully changed";
+		}
+		else
+		{
+			logger.error("Null request, Id not provided for /updateBookById");
+			throw new NullParameterException("Null request,please provide inputs to update the books details!");
+		}
+		
 	}
 	@ApiOperation(value="To delete a book from the website",
 			notes="This api end points should delete a existing book in the website"

@@ -10,8 +10,8 @@ public interface BookService {
     Optional<BookDTO> getBookById(String bookId);
 	BookDTO addBook(BookDTO books);
 	BookDTO deleteBookById(String bookId);
-	public boolean updateBook(BookDTO bookItem);
 	
+	public boolean updateBookById(BookDTO books);
 
 	
 	

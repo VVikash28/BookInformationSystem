@@ -2,6 +2,7 @@ package com.cg.bookmanagement.repository;
 
 
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -10,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cg.bookmanagement.dto.BookDTO;
 @Repository
-public interface BookRepository extends CrudRepository<BookDTO, String> {
+public interface BookRepository extends JpaRepository<BookDTO, String> {
 
 	@Modifying
 	@Query("UPDATE BookDTO bok SET bok.title=:title,bok.price=:price WHERE bok.bookId=:bookId")
